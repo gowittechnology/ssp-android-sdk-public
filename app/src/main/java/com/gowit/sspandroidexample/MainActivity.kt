@@ -59,8 +59,7 @@ class MainActivity : AppCompatActivity(), SspSdkInitializationListener, SspBanne
             .setSspLogLevel(SspLoggerLevel.ERROR) // You can set a log level for the Sdk level logs visibility
             .build()
 
-        // You can either fill all of the data inside SspClientMetaData, or you can fill them afterwards
-        // Just create your metaData object as singleton and handle it
+        // You can set client meta data in future as well
         val sspClientMetaData = SspClientMetaData.Builder()
             .birthDateAsLong(1988) // User BirthDate
             .gender(SspGender.Male) // User Gender
@@ -77,8 +76,8 @@ class MainActivity : AppCompatActivity(), SspSdkInitializationListener, SspBanne
         sspSdk = SspSdk.getInstance(
             context = this,
             sspSdkConfiguration = config,
-            sspClientMetaData = sspClientMetaData,
-            sspSdkInitializationListener = this
+            sspClientMetaData = sspClientMetaData, // can be set afterwards
+            sspSdkInitializationListener = this // If you don't want to listen for sdk init events, do not implement it
         )
 
         // Attach banner listener if you use a banner inside that activity or fragment
