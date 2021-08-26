@@ -19,7 +19,7 @@ allprojects {
         google()
         mavenCentral()
         maven {
-            url "https://gowit.jfrog.io/artifactory/default-maven-virtual"
+            url "https://gowitssp.jfrog.io/artifactory/default-maven-virtual"
         }
     }
 }

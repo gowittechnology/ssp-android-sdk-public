@@ -39,7 +39,7 @@ repositories {
         google()
         mavenCentral()
         maven {
-            url "https://gowit.jfrog.io/artifactory/default-maven-virtual"
+            url "https://gowitssp.jfrog.io/artifactory/default-maven-virtual"
         }
     }
 ```
@@ -48,7 +48,7 @@ Ardından app seviyesinde bulunan **build.gradle** dosyanıza aşağıdaki şeki
 
 ```groovy
 // Add repository for SSP SDK
-    implementation 'com.gowit:ssp-android-sdk:0.0.5'
+    implementation 'com.gowit:ssp-android-sdk:0.0.8'
 ```
 
 Sonrasında yapacağınız **gradle sync** işleminin arkasından kütüphane projenize dahil edilmiş olacaktır.
