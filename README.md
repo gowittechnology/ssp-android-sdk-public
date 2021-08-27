@@ -48,7 +48,7 @@ Ardından app seviyesinde bulunan **build.gradle** dosyanıza aşağıdaki şeki
 
 ```groovy
 // Add repository for SSP SDK
-    implementation 'com.gowit:ssp-android-sdk:0.0.8'
+    implementation 'com.gowit:ssp-android-sdk:0.0.10'
 ```
 
 Sonrasında yapacağınız **gradle sync** işleminin arkasından kütüphane projenize dahil edilmiş olacaktır.
