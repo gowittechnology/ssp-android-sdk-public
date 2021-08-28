@@ -48,7 +48,14 @@ Ardından app seviyesinde bulunan **build.gradle** dosyanıza aşağıdaki şeki
 
 ```groovy
 // Add repository for SSP SDK
-    implementation 'com.gowit:ssp-android-sdk:0.0.10'
+    implementation 'com.gowit:ssp-android-sdk:0.0.11'
+
+// SSP SDK uses 3rd party dependencies for network operations, and if you want to exclude them from your build,
+// you can add SSP SDK with those exclusions:
+    implementation ('com.gowit:ssp-android-sdk:0.0.11') {
+        exclude group: 'com.squareup.retrofit2', module:'retrofit'
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    }
 ```
 
 Sonrasında yapacağınız **gradle sync** işleminin arkasından kütüphane projenize dahil edilmiş olacaktır.
