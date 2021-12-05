@@ -3,6 +3,7 @@ package com.gowit.sspandroidexample
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Size
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -26,7 +27,8 @@ class MainActivity : AppCompatActivity(), SspSdkInitializationListener, SspBanne
         // from listener
         findViewById<Button>(R.id.buttonLoadFirstBanner).setOnClickListener {
             // You can use identifier as a unique id for each of your banner views
-            val sspRequestResponse = sspSdk.requestBanner(bannerSize = SspBannerSizes.BANNER,identifier = 0)
+            // adUnitID for the given ad field should be added to requestBanner call as well
+            val sspRequestResponse = sspSdk.requestBanner(adUnitId = "-2", size = Size(320, 50), identifier = 0)
             Log.e(LOG_TAG, "Banner1 Requested: " + SspRequestResponse.valueOf(sspRequestResponse.name).details)
         }
 
@@ -35,7 +37,8 @@ class MainActivity : AppCompatActivity(), SspSdkInitializationListener, SspBanne
         // from listener
         findViewById<Button>(R.id.buttonLoadSecondBanner).setOnClickListener {
             // You can use identifier as a unique id for each of your banner views
-            val sspRequestResponse = sspSdk.requestBanner(bannerSize = SspBannerSizes.LARGERECT, identifier = 1)
+            // adUnitID for the given ad field should be added to requestBanner call as well
+            val sspRequestResponse = sspSdk.requestBanner(adUnitId = "-3", size = Size(1000, 280) , identifier = 1)
             Log.e(LOG_TAG, "Banner2 Requested: " + SspRequestResponse.valueOf(sspRequestResponse.name).details)
         }
 
@@ -43,7 +46,7 @@ class MainActivity : AppCompatActivity(), SspSdkInitializationListener, SspBanne
         // If container is small in size, ad will not be shown and there will be an error message coming
         // from listener
         findViewById<Button>(R.id.buttonInters).setOnClickListener {
-            val sspRequestResponse = sspSdk.requestInterstitial(popUpSizes = SspPopUpSizes.SMALL, identifier = 0)
+            val sspRequestResponse = sspSdk.requestInterstitial(adUnitId = "-8", size = Size(1024, 1800), identifier = 0)
             Log.e(LOG_TAG, "Load Interstitial Ad: : " + SspRequestResponse.valueOf(sspRequestResponse.name).details)
         }
 
@@ -54,8 +57,7 @@ class MainActivity : AppCompatActivity(), SspSdkInitializationListener, SspBanne
         // You have to feed your SspSdkConfiguration object with Inventory Id and Advertiser Id
         // that you get from panel of Ssp.
         val config = SspSdkConfiguration.Builder()
-            .setInventoryId("1111111111") // your inventory id which can be found inside panel
-            .setAdvertiserId("222222222") // your advertiser id which can be found inside panel
+            .setInventoryId("-1") // your inventory id which can be found inside panel
             .setSspLogLevel(SspLoggerLevel.ERROR) // You can set a log level for the Sdk level logs visibility
             .build()
 

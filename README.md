@@ -48,11 +48,11 @@ Ardından app seviyesinde bulunan **build.gradle** dosyanıza aşağıdaki şeki
 
 ```groovy
 // Add repository for SSP SDK
-    implementation 'com.gowit:ssp-android-sdk:0.0.13'
+    implementation 'com.gowit:ssp-android-sdk:0.0.14'
 
 // SSP SDK uses 3rd party dependencies for network operations, and if you want to exclude them from your build,
 // you can add SSP SDK with those exclusions:
-    implementation ('com.gowit:ssp-android-sdk:0.0.13') {
+    implementation ('com.gowit:ssp-android-sdk:0.0.14') {
         exclude group: 'com.squareup.retrofit2', module:'retrofit'
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
@@ -64,12 +64,11 @@ Sonrasında yapacağınız **gradle sync** işleminin arkasından kütüphane pr
 
 ## SDK'nın yüklenmesi
 
-**SDK** nın modüllerine erişmek için ilk önce **InventoryID**'niz ve **AdUnitID**'niz ile konfigürasyon dosyanızı oluşturmalısınız. 
+**SDK** nın modüllerine erişmek için ilk önce **InventoryID**'niz ile konfigürasyon dosyanızı oluşturmalısınız.
 
 ```kotlin
 val config = SspSdkConfiguration.Builder()
-            .setInventoryId("1111111111") // inventory id
-            .setAdvertiserId("222222222") // advertiser id
+            .setInventoryId("XXXXXXX") // inventory id
             .setSspLogLevel(SspLoggerLevel.ERROR) // SDK sistemi loglama seviyesi.
             .build()
 ```
@@ -103,7 +102,9 @@ Reklam isteklerini özelleştirmek için yarattığımız **SspSdk** nesnesi üz
     val cat: IABCategory?, //Sayfa iceriğinin IAB kategorileri.
     val lt: Long?, //Eğer cihaz konum alıyorsa enlem verisi.
     val ln: Long?, //Eğer cihaz konum alıyorsa boylam verisi.
-    val app_v: String? //Uygulamanın versiyonu.
+    val app_v: String?, //Uygulamanın versiyonu.
+    val customPageURL : String? = null, // Custom Page Url
+    val referrer: String? = null // Referrer Url
 ```
 Bu parametreleri reklam isteği oluşturmadan önce belirlemelisiniz.
 
@@ -139,10 +140,10 @@ interface SspBannerAdListener {
 }
 ```
 
-Bu parametreyi belirledikten sonra reklam isteğinizi aşşağıdaki methodu çağırarak oluşturabilirsiniz.
+Bu parametreyi belirledikten sonra reklam isteğinizi aşağıdaki methodu çağırarak oluşturabilirsiniz. **AdUnitID**'nizi method içine aktarmanız zorunludur.
 
 ```kotlin
-    fun requestBanner(bannerSize: SspBannerSizes, identifier: Int? = null): SspRequestResponse {}
+    fun requestBanner(adUnitId: String, size: Size, identifier: Int? = null): SspRequestResponse {}
 ```
 
 <a name="callback-banner"/>
@@ -215,10 +216,10 @@ interface SspInterstitialAdListener {
 }
 ```
 
-Bu parametreyi belirledikten sonra reklam isteğinizi aşağıdaki methodu çağırarak oluşturabilirsiniz.
+Bu parametreyi belirledikten sonra reklam isteğinizi aşağıdaki methodu çağırarak oluşturabilirsiniz. **AdUnitID**'nizi method içine aktarmanız zorunludur.
 
 ```kotlin
-    fun requestInterstitial(popUpSizes: SspPopUpSizes, identifier: Int? = null): SspRequestResponse
+    fun requestInterstitial(adUnitId: String, size: Size, identifier: Int? = null): SspRequestResponse
 ```
 
 <a name="callback-interstitial"/>

@@ -44,5 +44,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // Add repository for SSP SDK
-    implementation 'com.gowit:ssp-android-sdk:0.0.13'
+    implementation 'com.gowit:ssp-android-sdk:0.0.14'
 }
